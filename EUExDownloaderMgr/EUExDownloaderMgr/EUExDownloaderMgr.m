@@ -105,6 +105,9 @@
     uexDownloader *downloader = self.downloaders[identifier];
     downloader.serverPath = serverURL;
     downloader.savePath = [self absPath:savePath];
+    if (!downloader.savePath||[downloader.savePath isEqualToString:@""]||[downloader.savePath isEqualToString:@"<null>"]||[downloader.savePath isEqualToString:@"(null)"]) {
+        return UEX_FALSE;
+    }
     downloader.resumable = resumable;
     [downloader startDownload];
     return UEX_TRUE;
