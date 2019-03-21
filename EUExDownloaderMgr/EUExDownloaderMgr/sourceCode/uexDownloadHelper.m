@@ -161,6 +161,9 @@
 @implementation NSURL (uexDownloaderMgr)
 
 + (instancetype)uexDownloader_saveURLFromPath:(NSString *)savePath{
+    if (!savePath||[savePath isEqualToString:@""]||[savePath isEqualToString:@"<null>"]||[savePath isEqualToString:@"(null)"]) {
+        return [NSURL fileURLWithPath:@""];;
+    }
     NSURL *URL;
     if ([savePath.lowercaseString hasPrefix:@"file://"]) {
         URL = [NSURL URLWithString:savePath];
